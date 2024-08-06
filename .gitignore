@@ -1,4 +1,2 @@
 /myenv
 */__pycache__
-# Django migrations
-*/migrations/__pycache__/
