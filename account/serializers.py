@@ -2,7 +2,7 @@ from rest_framework import serializers
 from account.models import MyUser
 from django.contrib.auth.models import Group
 
-class MyUserSerializer(serializers.ModelSerializer):
+class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyUser
         fields = '__all__'
