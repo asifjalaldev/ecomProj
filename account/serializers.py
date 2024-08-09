@@ -5,7 +5,19 @@ from django.contrib.auth.models import Group
 class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyUser
-        fields = '__all__'
+        fields = [
+            'username',
+            'email',
+            'phone_number', 
+            'address', 
+            'city', 
+            'state', 
+            'country', 
+            'postal_code', 
+            'profile_picture', 
+            'role',
+            'password'
+        ]
         extra_kwargs = {
            "password" : {"write_only" : True} 
         }
@@ -15,7 +27,8 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         user_role = validated_data.get('role', None)
-        user_group = Group.objects.get(name=user_role)
         if user_role:
-            user.groups.add(user_group)
+            user_group = Group.objects.get(name=user_role)
+        user.groups.add(user_group)
         return user
+    
