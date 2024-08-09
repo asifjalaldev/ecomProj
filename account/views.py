@@ -1,10 +1,9 @@
-from django.shortcuts import render
-from account.models import MyUser
 from rest_framework.views import APIView
 from account import serializers as account_serializers
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import authenticate, login
+
 # Create your views here.
 
 class RegisterUser(APIView):
@@ -21,10 +20,14 @@ class LoginUserView(APIView):
     def post(self, request):
         username=request.data['username']
         password=request.data['password']
-        authenticated_user = authenticate(request, username = username, password = password)
+        authenticated_user = authenticate(request,
+                                           username = username,
+                                            password = password)
         if authenticated_user:
             login(request, authenticated_user)
-            return Response({"success": "you are logged in  successfully"}, status = status.HTTP_200_OK)
+            return Response(
+                            {"success": "you are logged in  successfully"} 
+                            )
         else:
             return Response({"error": "username or password not match"})
 
