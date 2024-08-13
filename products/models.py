@@ -7,6 +7,9 @@ class ProductImage(models.Model):
                 upload_to='product_images',
                 null=True, blank=True
                 )
+    
+    def __str__(self):
+        return self.title
 
 
 class ProductCategory(models.Model):
@@ -15,6 +18,9 @@ class ProductCategory(models.Model):
 
 class ProductBrand(models.Model):
     name = models.CharField(max_length=50)
+      
+    def __str__(self):
+        return self.name
 
 
 class CategoryAttributes(models.Model):
@@ -26,6 +32,9 @@ class CategoryAttributes(models.Model):
     
     attribute_name = models.CharField(max_length=150)
     attribute_value = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.category.name
 
 
 class Product(models.Model):
@@ -50,4 +59,6 @@ class Product(models.Model):
     name = models.CharField(max_length=150)
     price = models.DecimalField(decimal_places=2)
     description = models.TextField()
-    
+      
+    def __str__(self):
+        return self.name
